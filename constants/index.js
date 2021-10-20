@@ -13,4 +13,7 @@ module.exports = {
 
 // HOOKS
 	"BEFORE_VALIDATE" : "beforeValidate",
+
+// OTHER CONTANTS
+	"SUCCESS" : "SUCCESS"
 }
