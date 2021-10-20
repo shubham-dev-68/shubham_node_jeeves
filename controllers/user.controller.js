@@ -1,6 +1,7 @@
 const {User} = require("../models");
 const errorMessages = require("../constants/error_messages");
 const jwt = require("jsonwebtoken");
+const {sendSuccessResponse, sendErrorResponse} = require("../utils/response.types")
 
 
 module.exports.createUser = async (req, res)=>{
@@ -15,12 +16,12 @@ module.exports.createUser = async (req, res)=>{
 	        email: email
 	    })
         if (user) {
-            res.json(user);
+            sendSuccessResponse(res, {user});
         } else {
             throw(err.SOMETHING_WENT_WRONG);
         }
 	}catch(err){
-		res.status(err.code===400?400: err.code===401?401 :500).send({message:err.message});
+		sendErrorResponse(res, err)
 	}
 }
 
@@ -39,14 +40,11 @@ module.exports.login = async (req, res)=>{
 
         if (isValid) {
             const token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXPIRY })
-            res.json({
-                "user": user,
-                "token": token
-            })
+            sendSuccessResponse(res, {user, token});
         } else {
         	throw({code:401, message:errorMessages.INVALID_PASSWORD})
         }
     } catch (err) {
-        res.status(err.code===400?400: err.code===401?401 :500).send({message:err.message});
+        sendErrorResponse(res, err)
     }
 }
