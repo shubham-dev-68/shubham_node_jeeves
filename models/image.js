@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
             this.belongsTo(models.Post, { foreignKey: "post_id" })
         }
+        
+        toJSON() {
+            return {...this.get(), id: undefined, updatedAt: undefined, createdAt: undefined }
+        }
+
     };
     Image.init({
         url: {

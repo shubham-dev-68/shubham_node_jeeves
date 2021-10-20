@@ -11,7 +11,7 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // initalize routes
-require("./routes");
+require("./routes")(app);
 
 app.listen(port, () => {
   console.log("Server is up on port " + port);

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         }
 
         toJSON() {
-            return {...this.get(), id: undefined}
+            return {...this.get(), id: undefined, updatedAt: undefined, createdAt: undefined }
         }
     };
     Topic.init({

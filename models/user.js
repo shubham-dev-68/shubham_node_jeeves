@@ -2,6 +2,8 @@
 
 const errorMessages = require('../constants/error_messages');
 const constants = require('../constants');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const {Model} = require('sequelize');
 
@@ -14,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(models.Comment, { foreignKey: constants.USER_ID });
         }
         toJSON() {
-            return {...this.get(), id: undefined, password: undefined }
+            return {...this.get(), id: undefined, password: undefined, updatedAt: undefined, createdAt: undefined }
         }
     };
     User.init({
@@ -46,6 +48,16 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: constants.USER,
     });
+
+    User.addHook(constants.BEFORE_VALIDATE, async(user, options) => {
+        let hash = await bcrypt.hash(user.password, saltRounds);
+        user.password = hash;
+        user.email = user.email.toLowerCase()
+    });
+
+    User.validatePassword = function(password, hash) {
+        return bcrypt.compare(password, hash);
+    }
 
     return User;
 };

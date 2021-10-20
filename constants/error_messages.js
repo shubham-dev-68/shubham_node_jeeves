@@ -21,5 +21,11 @@ module.exports = {
 
 	// IMAGE VALIDATION RELATED
 	"IMAGE_CONTENT_REQUIRED": "Image must have a Url",
-	"IMAGE_CONTENT_CANNOT_BE_EMPTY": "Url must not be empty"
+	"IMAGE_CONTENT_CANNOT_BE_EMPTY": "Url must not be empty",
+
+	// Controller validation
+	"SIGNUP_FIELD_REQUIRED" : "Please include name, password and email in the request",
+
+	// UNCERTAIN ERROR
+	"SOMETHING_WENT_WRONG" : "Something Went Wrong"
 }
