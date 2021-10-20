@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(models.Comment, { foreignKey: constants.USER_ID });
         }
         toJSON() {
-            return {...this.get(), id: undefined, password: undefined, updatedAt: undefined, createdAt: undefined }
+            return {...this.get(), password: undefined, updatedAt: undefined, createdAt: undefined }
         }
     };
     User.init({
@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 notNull: { msg: errorMessages.USER_EMAIL_REQUIRED },
                 notEmpty: { msg: errorMessages.USER_EMAIL_NOT_EMPTY }
