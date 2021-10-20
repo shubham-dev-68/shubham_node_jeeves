@@ -27,6 +27,8 @@ module.exports = {
 	"SIGNUP_FIELD_REQUIRED" : "Please include name, password and email in the request",
 	"INVALID_PASSWORD" : "Please check your password",
 	"USER_NOT_REGISTERED" : "User is not registered",
+	"TOKEN_INVALID" : "Passed token is expired or invalid",
+	"TOKEN_MISSING" : "Token Missing",
 
 	// UNCERTAIN ERROR
 	"SOMETHING_WENT_WRONG" : "Something Went Wrong",

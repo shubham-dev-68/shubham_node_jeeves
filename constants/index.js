@@ -15,5 +15,7 @@ module.exports = {
 	"BEFORE_VALIDATE" : "beforeValidate",
 
 // OTHER CONTANTS
-	"SUCCESS" : "SUCCESS"
+	"SUCCESS" : "SUCCESS",
+	"BEARER" : "Bearer",
+	"SPACE" : " ",
 }

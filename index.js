@@ -16,5 +16,5 @@ require("./routes")(app);
 app.listen(port, () => {
   console.log("Server is up on port " + port);
   // sequelize sync force true for the time being to clear the models till its finalized
-  sequelize.sync({ "force": true });
+  sequelize.sync({ "alter": true });
 });
