@@ -1,0 +1,26 @@
+{
+  "name": "shubham_node_jeeves",
+  "version": "1.0.0",
+  "description": "interview_test_nodejs app topic post comments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubham-dev-68/shubham_node_jeeves.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubham-dev-68/shubham_node_jeeves/issues"
+  },
+  "homepage": "https://github.com/shubham-dev-68/shubham_node_jeeves#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.7.0"
+  }
+}
