@@ -26,9 +26,12 @@ module.exports.createTopic = async (req, res)=>{
 module.exports.listTopics = async (req, res)=>{
 	try{
 		let {page, limit} = req.query;
+		if (!(page>0 && limit>0)){
+			throw({"code":400, message:errorMessages.PAGE_AND_LIMIT_VALUE_ERROR});
+		}
 		const topics = await Topic.findAndCountAll({
 			"limit" : parseInt(limit),
-			"offset" : parseInt(page*limit)
+			"offset" : (parseInt(page)-1)*parseInt(limit)
 		})
         if (topics) {
             sendSuccessResponse(res, {topics});

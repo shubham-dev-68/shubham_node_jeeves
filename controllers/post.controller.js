@@ -48,11 +48,21 @@ module.exports.createPost = async (req, res)=>{
 
 module.exports.listPosts = async (req, res)=>{
 	try{
-		const post = await Post.findAll({include:["Comments", "Images"]})
-        if (post) {
-            sendSuccessResponse(res, {post});
+		let {page, limit} = req.query;
+		if (!(page>0 && limit>0)){
+			throw({"code":400, message:errorMessages.PAGE_AND_LIMIT_VALUE_ERROR});
+		}
+
+		const posts = await Post.findAndCountAll({
+			include:["Comments", "Images"],
+			"limit" : parseInt(limit),
+			"offset" : (parseInt(page)-1)*parseInt(limit)
+		})
+
+        if (posts) {
+            sendSuccessResponse(res, {posts});
         } else {
-            throw(err.SOMETHING_WENT_WRONG);
+            throw({"code":500, message:errorMessages.SOMETHING_WENT_WRONG});
         }
 	}catch(err){
 		sendErrorResponse(res, err)

@@ -32,6 +32,7 @@ module.exports = {
 	"TOPIC_ID_REQUIRED" : "Topic id required",
 	"POST_ID_REQUIRED" : "Post id is required",
 	"ERROR_UPLOAD_IMAGES" : "Unable to upload image/s",
+	"PAGE_AND_LIMIT_VALUE_ERROR" : "The page and limit values are invalid, please check",
 
 	// UNCERTAIN ERROR
 	"SOMETHING_WENT_WRONG" : "Something Went Wrong",
