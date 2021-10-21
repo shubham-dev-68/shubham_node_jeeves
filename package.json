@@ -4,6 +4,8 @@
   "description": "interview_test_nodejs app topic post comments",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "createdb" : "node setupDb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

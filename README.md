@@ -16,8 +16,8 @@ Steps to run the project
       JWT_SECRET=assignment
       TOKEN_EXPIRY=6h
   5. Make a uploads folder in project root directory. (used to store uploaded images)
-  6. Run "node setupDb.js" to create the database as mentioned in .env file. (Only once)
-  7. Run "node index.js" to run the main server.
+  6. Run "npm run createdb" to create the database as mentioned in .env file. (Only once)
+  7. Run "npm start" to run the main server.
 
 DATABSE : MySql
 Programming Language : Javascript
