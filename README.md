@@ -27,5 +27,9 @@ ORM : Sequelize.js
 Request Handlers : You can find all handlers inside controllers folder.
 Model Files : All model files are inside models folder.
 Routes : All routes are inside routes folder.
+Postman Collection : https://www.postman.com/collections/316af4288ee25681170a
+
+Usage of authorized APIs : Copy the JWT token on successfull login and place it as a 
+                           Authorization Bearer in all Authorized APIs.
 
 Author: Shubham Sharma
