@@ -24,5 +24,18 @@ module.exports.createTopic = async (req, res)=>{
 }
 
 module.exports.listTopics = async (req, res)=>{
-	
+	try{
+		let {page, limit} = req.query;
+		const topics = await Topic.findAndCountAll({
+			"limit" : parseInt(limit),
+			"offset" : parseInt(page*limit)
+		})
+        if (topics) {
+            sendSuccessResponse(res, {topics});
+        } else {
+            throw(err.SOMETHING_WENT_WRONG);
+        }
+	}catch(err){
+		sendErrorResponse(res, err)
+	}
 }

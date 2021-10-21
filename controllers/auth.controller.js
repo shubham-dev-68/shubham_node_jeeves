@@ -10,16 +10,14 @@ module.exports.authenticate = async(req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
             if (!err) {
                 // Succefully verified the token
-                console.log("// Succefully verified the tokenn", decoded);
                 req.user = decoded;
                 next(); // pass the request to next handler
             } else {
-                console.log("err", err);
-                sendErrorResponse({"code":401, "message":errorMessages.TOKEN_INVALID})
+                sendErrorResponse(res, {"code":401, "message":errorMessages.TOKEN_INVALID})
             }
         });
 
     } else {
-        sendErrorResponse({"code":401, "message":errorMessages.TOKEN_MISSING})
+        sendErrorResponse(res, {"code":401, "message":errorMessages.TOKEN_MISSING})
     }
 }

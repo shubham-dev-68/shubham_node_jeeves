@@ -29,6 +29,8 @@ module.exports = {
 	"USER_NOT_REGISTERED" : "User is not registered",
 	"TOKEN_INVALID" : "Passed token is expired or invalid",
 	"TOKEN_MISSING" : "Token Missing",
+	"TOPIC_ID_REQUIRED" : "Topic id required",
+	"POST_ID_REQUIRED" : "Post id is required",
 
 	// UNCERTAIN ERROR
 	"SOMETHING_WENT_WRONG" : "Something Went Wrong",
