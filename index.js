@@ -6,10 +6,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 const {sequelize} = require('./models')
 var bodyParser = require('body-parser')
+const path = require("path")
 
 
 app.use(cors()); //for no domain restriction
 app.use(express.json()); // for parsing application/json
+app.use(express.static(path.join(__dirname, "/uploads")));
 
 // initalize routes
 require("./routes")(app);

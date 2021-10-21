@@ -31,6 +31,7 @@ module.exports = {
 	"TOKEN_MISSING" : "Token Missing",
 	"TOPIC_ID_REQUIRED" : "Topic id required",
 	"POST_ID_REQUIRED" : "Post id is required",
+	"ERROR_UPLOAD_IMAGES" : "Unable to upload image/s",
 
 	// UNCERTAIN ERROR
 	"SOMETHING_WENT_WRONG" : "Something Went Wrong",

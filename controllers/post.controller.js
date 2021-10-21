@@ -1,10 +1,10 @@
-const {Post} = require("../models");
+const {Post, Image} = require("../models");
 const errorMessages = require("../constants/error_messages")
 const {sendSuccessResponse, sendErrorResponse} = require("../utils/response.types")
 
 module.exports.createPost = async (req, res)=>{
 	try{
-		console.log(req);
+
 		const {content, topic_id} = req.fields;
 		const user = req.user;
 		if(!content){
@@ -13,13 +13,31 @@ module.exports.createPost = async (req, res)=>{
 		if(!topic_id){
 			throw({code:400, message:errorMessages.TOPIC_ID_REQUIRED})
 		}
-		const topic = await Post.create({
+		const post = await Post.create({
 	        "content": content,
 	        "user_id" : user.id,
 	        "topic_id" : topic_id
 	    })
-        if (topic) {
-            sendSuccessResponse(res, {topic});
+
+	    
+		let files = req.files["images"];
+		let imageFilenames = [];
+		for(let i=0; i<files.length; i++){
+			let filename = files[i].path.split("/").pop();
+			imageFilenames.push({"url":filename, "post_id":post.id})
+		}
+		// if post created succesfully
+        if (post) {
+        	// if there are image files then make image entries
+        	if(imageFilenames.length){
+        		const imagesRes = await Image.bulkCreate(imageFilenames)
+        		if(!imagesRes)
+        			throw({code:500, message:errorMessages.ERROR_UPLOAD_IMAGES})
+        		else{
+        			console.log(imagesRes)
+        		}
+        	}
+            sendSuccessResponse(res, {post});
         } else {
             throw(err.SOMETHING_WENT_WRONG);
         }
@@ -30,7 +48,7 @@ module.exports.createPost = async (req, res)=>{
 
 module.exports.listPosts = async (req, res)=>{
 	try{
-		const post = await Post.findAll({include:'Comments'})
+		const post = await Post.findAll({include:["Comments", "Images"]})
         if (post) {
             sendSuccessResponse(res, {post});
         } else {
